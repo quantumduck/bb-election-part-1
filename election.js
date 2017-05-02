@@ -2,9 +2,12 @@ $(document).ready(function() {
   var rootURL = 'https://bb-election-api.herokuapp.com/';
   var results = document.createElement('ul');
   results.id = "results";
-  $('body').append('<h1>Election Results</h1>')
+  $('body').append('<div id="errors"></div>');
+  $('body').append('<h1>Election Results</h1>');
   $('body').append(results);
-  $('body').append('<div id="errors"></div>')
+  $('body').css('background-size', '100%');
+  $('body').css('background-repeat', 'no-repeat');
+  $('body').css('background-image', 'url(images/bikini-bottom.jpg)');
   $.ajax({
     url: rootURL,
     method: 'GET',
@@ -25,6 +28,12 @@ $(document).ready(function() {
     $('#errors').append('<p class="error">[Error loading election results.]</p>');
   }).always(function() {});
 
+  $('#results').css('list-style', 'none');
+  $('#results').css('padding', '0');
+  $('body').css('text-align', 'center');
+  $('body').css('background-size', '100%');
+  $('body').css('background-repeat', 'no-repeat');
+  $('body').css('background-image', 'url(images/bikini-bottom.jpg)');
   // Imagination!
 
 });
