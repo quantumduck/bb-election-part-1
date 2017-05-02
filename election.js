@@ -4,6 +4,7 @@ $(document).ready(function() {
   results.id = "results";
   $('body').append('<h1>Election Results</h1>')
   $('body').append(results);
+  $('body').append('<div id="errors"></div>')
   $.ajax({
     url: rootURL,
     method: 'GET',
@@ -12,7 +13,7 @@ $(document).ready(function() {
   }).done(function(data) {
     var candidates = data.candidates;
     for (var i = 0; i < candidates.length; i++) {
-      $('body').append(
+      $('#results').append(
         '<li><strong>' +
         candidates[i].name +
         ':</strong> <em>' +
@@ -20,7 +21,9 @@ $(document).ready(function() {
         '</em></li>'
       );
     }
-  }).fail(function() {}).always(function() {});
+  }).fail(function() {
+    $('#errors').append('<p class="error">[Error loading election results.]</p>');
+  }).always(function() {});
 
   // Imagination!
 
